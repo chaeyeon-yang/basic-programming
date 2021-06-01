@@ -1,0 +1,52 @@
+Tuple = (10,20,30,40)
+number_list = []
+
+for i in range(5):
+    input_number = int(input("숫자를 입력해 주세요:"))
+    number_list.append(input_number)
+
+#버블정렬
+def listSort(list):
+    for i in range(len(list) - 1):
+        for j in range(len(list)-1-i):
+            if list[j] > list[j+1]:
+                list[j], list[j+1] = list[j+1], list[j]
+    return list
+
+#주된 내용 -> 리스트 cloning
+
+#add list elements and tuple elements
+def merge(t1,l1):
+
+    
+    #변수는 표면상으로는 값을 저장하는 공간으로 보이지만
+    #사실상 값이 메모리 상에 저장되는 **주소값**을 가르키이기때문에
+    #변수를 다른 변수에 대입하게 되면
+    #두 변수는 같은 값(객체)를 가르키게 돼요
+
+    #merge_list=l1을 하게 될 경우 값을 가져올 수 있지만 주소값도 그대로 가져와요
+    #merge_list의 id(주소값)이 l1과 동일해져요
+    #id(merge_list) == id(l1)
+
+    #그래서 merge_list를 변경하면 같은 주소값인 l1의 값도 변경돼요
+
+    merge_list=l1
+    print(id(merge_list)==id(l1))   #True가 나오는걸 확인가능
+
+    ##  ---> 이런 문제점으로 인해 리스트를 복제할때는 주로 변수명으로 가져오는게 아닌
+    ##       리스트 슬라이싱을 통해 잠깐 l1의 값을 빌려오도록 해요!
+    ##       l1[:] 이렇게 하면 주소값이 넘겨오는게 아니라 슬라이싱 된 값 그 자체가 넘어오기 때문이에요
+
+    
+    
+
+    #merge_list=li[:] 리스트 슬라이싱을 통해 변수 자체에 담겨있는 주소값도 가져오는 것이 아닌
+    #슬라이싱된 값만 대입한다!
+    
+    for i in t1:
+        merge_list.append(i)
+    return merge_list
+
+print("tuple과 list를 합친 결과 result",listSort(merge(Tuple, number_list)))
+print(number_list)
+print("내 list 정렬 값",listSort(number_list))
